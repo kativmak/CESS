@@ -17,3 +17,6 @@ The structure is:
 2. tau.py - if you want to take into account dust attenuation within the cube, calculates tau cube (using absorption cross-section from Draine (2003))
 3. rt.py - project your 3D cube to 2D taking into account a simple radiative transfer.
 You can see more details on the attached diagram for the step-by-step procedure.
+
+To start CESS you also need to have uniform grid data (not AMR-grid). You can use this tool to reproject your data to the uniform grid: 
+https://bitbucket.org/pierrenbg/flash-amr-tools/src/master/
