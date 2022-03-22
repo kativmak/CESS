@@ -1,8 +1,9 @@
+import sys
 import numpy as np
 from scipy.interpolate import interp1d
 from itertools import product
 import matplotlib
-matplotlib.use('Agg')
+#matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib import colors
 from matplotlib.colors import LogNorm, Normalize
@@ -13,11 +14,16 @@ from matplotlib.colors import LogNorm, Normalize
 #np.save('gas_temp.npy', b)
 #-----------------------------------------------------
 
-file_numb = str(input("Number of the snapshot: "))
+file_numb = sys.argv[0]
+# int(input("Number of the snapshot: "))
 
-option = int(input("""Enter the number of the ratio to calculate: \n 1. [S II]/[S II] \n 2. [N II]/Ha \n 3. [O III]/Ha \n 4. [S II]/Ha \n 5. [O III]/Hb \n"""))
+option = int(sys.argv[1])
+#int(input("""Enter the number of the ratio to calculate: \n 1. [S II]/[S II] \n 2. [N II]/Ha \n 3. [O III]/Ha \n 4. [S II]/Ha \n 5. [O III]/Hb \n"""))
 
-key = int(input("Rotation key (from 0 to 2): "))
+bg = int(sys.argv[2])
+#int(input("""Is it a background emission calculations? \n 1. Yes \n 2. No \n"""))
+key = int(sys.argv[3])
+#int(input("Rotation key (from 0 to 2): "))
 #key = 0
 
 h_star = 3.086e18 #pc -> cm
@@ -81,7 +87,7 @@ if key == 1:
 	temp_sim = np.swapaxes(temp_sim, 0, 1)
 	size = np.shape(temp_sim)
 	xmin = 2.3e20
- 	xmax = 5.0e20
+	xmax = 5.0e20
 else:
 	temp_sim = np.swapaxes(temp_sim, 0, 2)
 	size = np.shape(temp_sim)
@@ -104,6 +110,11 @@ print('Min and max for the first emission: ', np.amin(emiss_1), np.amax(emiss_1)
 print('Min and max for the second emission: ', np.amin(emiss_2), np.amax(emiss_2))
 
 #Let's save the data
-np.save('emiss_1.npy', emiss_1)
-np.save('emiss_2.npy', emiss_2)
+if bg == 1:
+	np.save('bg_emiss_1.npy', emiss_1)
+	np.save('bg_emiss_2.npy', emiss_2)
+elif bg == 0:
+	np.save('emiss_1.npy', emiss_1)
+	np.save('emiss_2.npy', emiss_2)
+
 print('Emission cubes are ready')
