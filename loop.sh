@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Command example :
-# bash loop.sh -snapshot 154 -ratio_number 1 -bg 1 -rotation_key 0 res_unres_sn 0
+# bash loop.sh -snapshot 154 -ratio_number 1 -bg 1 -rotation_key 0 -res_unres_sn 0
 
 #pth="./data/SILCC_hdf5_plt_cnt_0"
 
