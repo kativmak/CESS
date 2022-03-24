@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Command example :
-# bash loop.sh -snapshot 154 -ratio_number 1 -bg 1 -rotation_key 0 -res_unres_sn 0
+# bash loop.sh -snapshot 154 -range -3.13421894e+20,-7.23281223e+19,2.3e20,5.0e20,-1.0e20,1.0e20 -ratio_number 1 -bg 1 -rotation_key 0
 
 #pth="./data/SILCC_hdf5_plt_cnt_0"
 
 #for a test run:
-pth="./gas_temp.npy"
+#pth="./gas_temp.npy"
 
 #if you want to post-proc. a few files
 #counter=154
@@ -19,6 +19,10 @@ while [[ $# -gt 0 ]]; do
         snapshot=$2
         shift
         ;;
+    -range)
+        range=$2
+        shift
+        ;;
     -ratio_number)
     	ratio_number=$2
     	shift
@@ -29,10 +33,6 @@ while [[ $# -gt 0 ]]; do
         ;;
     -rotation_key)
         rotation_key=$2
-        shift
-        ;;
-    -res_unres_sn)
-        res_unres_sn=$2
         shift
         ;;
     *)
@@ -49,31 +49,27 @@ fi
 
 # Verify if all parameters are given
 if [ -z ${snapshot+x} ]; then echo "No snapshot number given !"; exit; fi
+if [ -z ${range+x} ]; then echo "Not range given !"; exit; fi
 if [ -z ${ratio_number+x} ]; then echo "The emission line ratio was not specified !"; exit; fi
 if [ -z ${bg+x} ]; then echo "No background parameter given !"; exit; fi
 if [ -z ${rotation_key+x} ]; then echo "No rotation_key given !"; exit; fi
-if [ -z ${res_unres_sn+x} ]; then echo "Not specified: resolved or unresolved SN calculations !"; exit; fi
-
 echo 'Starting the emission calculations...'
+#Note: if you want to calculate the background emission the .sh will exit 
+#because you #should always calculate it for the zero snapshot (153 or 154)
+if [ $bg == 1 ] 
+then 
+	python emiss_3Dcube.py <<< $snapshot $snapshot $ratio_number $bg $rotation_key
+	exit 1
+fi
 
 if [ $bg == 0 ] 
 then 
-	python emiss_3Dcube.py <<< $counter $ratio_number $bg $rotation_key
+	python emiss_3Dcube.py <<< $snapshot $snapshot $ratio_number $bg $rotation_key
 fi
 
-if [ $bg == 1 ] 
-then 
-	python emiss_3Dcube.py <<< $counter $ratio_number $bg $rotation_key
-	bg=$(( $bg - 1 ))
-	if (( $bg == 0 )) 
-	then
-		python emiss_3Dcube.py <<< $counter $ratio_number $bg $rotation_key
-	fi
-fi
-
-echo 'Tau calculations...'
-python tau.py <<< $ratio_number $rotation_key
-echo 'RT calculations...'
-python rt.py <<< $rotation_key $bg $res_unres_sn
+#echo 'Tau calculations...'
+python tau.py <<< $ratio_number $ratio_number $range  $rotation_key
+#echo 'RT calculations...'
+python rt.py <<< $rotation_key $rotation_key $bg
 
 echo All done
