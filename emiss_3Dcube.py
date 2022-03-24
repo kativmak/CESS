@@ -17,16 +17,12 @@ from matplotlib.colors import LogNorm, Normalize
 file_numb = sys.argv[1]
 # int(input("# of the snapshot: "))
 
-n = len(sys.argv[2])
-coord = sys.argv[2][0:n-1]
-coord = coord.split(',')
-
-option = int(sys.argv[3])
+option = int(sys.argv[2])
 #int(input("""Enter the number of the ratio to calculate: \n 1. [S II]/[S II] \n 2. [N II]/Ha \n 3. [O III]/Ha \n 4. [S II]/Ha \n 5. [O III]/Hb \n"""))
 
-bg = int(sys.argv[4])
+bg = int(sys.argv[3])
 #int(input("""Is it a background emission calculations? \n 1. Yes \n 2. No \n"""))
-key = int(sys.argv[5])
+key = int(sys.argv[4])
 #int(input("Rotation key (from 0 to 2): "))
 
 h_star = 3.086e18 #pc -> cm
@@ -84,22 +80,12 @@ print('TEMP shape:', np.shape(temp_sim))
 #Projection: rotate an array (1-3)
 if key == 0:
 	size = np.shape(temp_sim)
-	xmin = coord[0]
-	xmax = coord[1]
 if key == 1:
 	temp_sim = np.swapaxes(temp_sim, 0, 1)
 	size = np.shape(temp_sim)
-	xmin = coord[2]
-	xmax = coord[3]
 else:
 	temp_sim = np.swapaxes(temp_sim, 0, 2)
 	size = np.shape(temp_sim)
-	xmin = coord[4]
-	xmax = coord[5]
-
-print(xmin, xmax)
-#Define the size of the cells
-#dx = (xmax - xmin)/size[(key)]
 
 #Define the temp limits for the emission
 low_lim1 = temp_1[0]
