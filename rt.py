@@ -2,11 +2,15 @@ import sys
 import numpy as np
 
 #Projection parameter, should ne the same as in main emission calculations!
-key = sys.argv[0]
+key = int(sys.argv[1])
 #int(input("Rotation key (from 0 to 2): "))
-res_opt = int(sys.argv[1])
-#int(input("Resolved (0) or unresolved (1) SNR calculations?: "))
+
 bg = int(sys.argv[2])
+
+n = len(sys.argv[3])
+coord = sys.argv[3][0:n-1]
+coord = coord.split(',')
+#int(input("Resolved (0) or unresolved (1) SNR calculations?: "))
 
 #Optical depth files loading
 tau_1 = np.load('tau_emiss1.npy')
@@ -40,19 +44,19 @@ emiss2_2 = np.flip(emiss_2, 0)
 
 #Projection: rotate an array (1-3)
 if key == 0:
-	xmin = -3.13421894e+20
-	xmax = -7.23281223e+19
+	xmin = float(coord[0])
+	xmax = float(coord[1])
 if key == 1:
-	xmin = 2.3e20
-	xmax = 5.0e20
+	xmin = float(coord[2])
+	xmax = float(coord[3])
 else:
-	xmin = -1.0e20
-	xmax = 1.1e20
+	xmin = float(coord[4])
+	xmax = float(coord[5])
 
 size = np.shape(emiss_1)
-dx = (xmax - xmin)/size[(0)]
+dx = (xmax - xmin)/size[(key)]
 
-for i in range(size[0]):
+for i in range(size[key]):
 	if i == 0:
 		integ_em_1 = emiss_1[0]* np.exp(-tau_1[0])*1e21*1e22/dx/dx #bottom from the top of the cube
 		integ_em_rev_1 = emiss2_1[0]*np.exp(-tau2_1[0])*1e21*1e22/dx/dx #bottom of the cube
@@ -69,10 +73,10 @@ for i in range(size[0]):
 		integ_em_rev_2 += emiss2_2[i] * np.exp(-tau2_2[i])*1e21*1e22/dx/dx
 
 #Fixing the 'resolution'(/arcsec^2 )
-integ_em_2 = integ_em_2/35.0/size[0]
-integ_em_1 = integ_em_1/35.0/size[0]
-integ_em_rev_1 = integ_em_rev_1/35.0/size[0]
-integ_em_rev_2 = integ_em_rev_2/35.0/size[0]
+integ_em_2 = integ_em_2/35.0/size[key]
+integ_em_1 = integ_em_1/35.0/size[key]
+integ_em_rev_1 = integ_em_rev_1/35.0/size[key]
+integ_em_rev_2 = integ_em_rev_2/35.0/size[key]
 
 #np.save('em_1', integ_em_1)
 #np.save('em_2', integ_em_2)
