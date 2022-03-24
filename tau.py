@@ -11,28 +11,31 @@ from scipy.interpolate import interp1d
 #Load simulated data: TEMP, DENS, shock_cells
 dens_sim = np.load('gas_density.npy')
 
-option = sys.argv[0]
+option = sys.argv[1]
 # = int(input("""Enter the number of the ratio to calculate: \n 1. [S II]/[S II] \n 2. [N II]/Ha \n 3. [O III]/Ha \n 4. [S II]/Ha \n 5. [O III]/Hb \n"""))
 
+n = len(sys.argv[2])
+coord = sys.argv[2][0:n-1]
+coord = coord.split(',')
 
 #Projection parameter, should ne the same as in main emission calculations!
-key = int(sys.argv[1])
+key = int(sys.argv[3])
 # = int(input("Rotation key (from 0 to 2): "))
 
 if key == 0:
         size = np.shape(dens_sim)
-        xmin = -3.13421894e+20
-        xmax = -7.23281223e+19
+        xmin = float(coord[0])
+        xmax = float(coord[1])
 elif key == 1:
         dens_sim = np.swapaxes(dens_sim, 0, 1)
         size = np.shape(dens_sim)
-        xmin = 2.3e20
-        xmax = 5.0e20
+        xmin = coord[2]
+        xmax = coord[3]
 else: 
         dens_sim = np.swapaxes(dens_sim, 0, 2)
         size = np.shape(dens_sim)
-        xmin = -1.0e20
-        xmax = 1.1e20
+        xmin = coord[4]
+        xmax = coord[5]
 
 #Size of the cell
 dx = (xmax - xmin)/size[key]
