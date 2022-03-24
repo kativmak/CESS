@@ -78,7 +78,7 @@ integ_em_rev_2 = integ_em_rev_2/35.0/size[0]
 #np.save('em_2', integ_em_2)
 #np.save('em_rev_1', integ_em_rev_1)
 #np.save('em_rev_2', integ_em_rev_2)
-
+res_opt = 0
 if res_opt == 0:
 	integ_em_2[integ_em_2 < 3e-18] = 1e20
 	integ_em_1[integ_em_1 < 3e-18] = 0.0
@@ -88,17 +88,20 @@ if res_opt == 0:
 	mean_2 = integ_em_rev_1/integ_em_rev_2
 	mean1 = np.mean(mean_1[mean_1 != 0.0])
 	mean2 = np.mean(mean_2[mean_2 != 0.0])
+	file = open('result_res_snr.txt', 'a')
+	file.write(str(mean1) + ' ' + str(mean2) + '\n')
+	file.close()
+	res_opt += 1
 elif res_opt == 1:
-	integ_em_2[integ_em_2 < 3e-18] = 0.0
-	integ_em_1[integ_em_1 < 3e-18] = 0.0
-	integ_em_rev_1[integ_em_rev_1 < 3e-18] = 0.0
-	integ_em_rev_2[integ_em_rev_2 < 3e-18] = 0.0
+	integ_em_2[integ_em_2 == 1e20] = 0.0
+	#integ_em_1[integ_em_1 < 3e-18] = 0.0
+	#integ_em_rev_1[integ_em_rev_1 < 3e-18] = 0.0
+	integ_em_rev_2[integ_em_rev_2 == 1e20] = 0.0
 	mean1 = np.sum(integ_em_1)/np.sum(integ_em_2)
 	mean2 = np.sum(integ_em_rev_1)/np.sum(integ_em_rev_2)
-
-file = open('res.txt', 'a')
-file.write(str(mean1) + ' ' + str(mean2) + '\n')
-file.close()
+	file = open('result_unres_snr.txt', 'a')
+	file.write(str(mean1) + ' ' + str(mean2) + '\n')
+	file.close()
 
 #Observ. limit
 #3 *10^{-18} erg/s/cm^2/arcsec^2
