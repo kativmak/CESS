@@ -95,7 +95,6 @@ mean2 = np.mean(mean_2[mean_2 != 0.0])
 file = open('result_res_snr.txt', 'a')
 file.write(str(mean1) + ' ' + str(mean2) + '\n')
 file.close()
-res_opt += 1
 
 #Calculation of the mean for unresolved SNR
 integ_em_2[integ_em_2 == 1e20] = 0.0
