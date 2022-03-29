@@ -56,7 +56,7 @@ elif option == 4:
 	emis_2 = np.fromfile('./MV_tables/ha_full/ha.dat', dtype=float, count=-1, sep='\n')
 	hbeta_2 = np.fromfile('./MV_tables/ha_full/hb.dat', dtype=float, count=-1, sep='\n')
 	temp_2 = np.fromfile('./MV_tables/ha_full/temp.dat', dtype=float, count=-1, sep='\n')
-else:
+elif option == 5:
 	emis_1 = np.fromfile('./MV_tables/o3_solar/o3.dat', dtype=float, count=-1, sep='\n')
 	hbeta_1 = np.fromfile('./MV_tables/o3_solar/hbeta.dat', dtype=float, count=-1, sep='\n')
 	temp_1 = np.fromfile('./MV_tables/o3_solar/temp.dat', dtype=float, count=-1, sep='\n')
@@ -69,7 +69,10 @@ emis_1 = emis_1*hbeta_1
 #interpolation: x - temp dat, y - emission data
 interp_func_1 = interp1d(temp_1, emis_1)
 
-emis_2 = emis_2*hbeta_2
+if option == 5:
+	emis_2 = hbeta_2
+else:
+	emis_2 = emis_2*hbeta_2
 interp_func_2 = interp1d(temp_2, emis_2)
 print('Interpolate function is ready')
 
@@ -80,10 +83,10 @@ print('TEMP shape:', np.shape(temp_sim))
 #Projection: rotate an array (1-3)
 if key == 0:
 	size = np.shape(temp_sim)
-if key == 1:
+elif key == 1:
 	temp_sim = np.swapaxes(temp_sim, 0, 1)
 	size = np.shape(temp_sim)
-else:
+elif key == 2:
 	temp_sim = np.swapaxes(temp_sim, 0, 2)
 	size = np.shape(temp_sim)
 
