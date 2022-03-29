@@ -29,13 +29,13 @@ if key == 0:
 elif key == 1:
         dens_sim = np.swapaxes(dens_sim, 0, 1)
         size = np.shape(dens_sim)
-        xmin = coord[2]
-        xmax = coord[3]
-else: 
+        xmin = float(coord[2])
+        xmax = float(coord[3])
+elif key == 2: 
         dens_sim = np.swapaxes(dens_sim, 0, 2)
         size = np.shape(dens_sim)
-        xmin = coord[4]
-        xmax = coord[5]
+        xmin = float(coord[4])
+        xmax = float(coord[5])
 
 #Size of the cell
 dx = (xmax - xmin)/size[key]
@@ -55,7 +55,7 @@ elif option == 3:
 elif option == 4:
         kappa1 = 6419.0 #SII 6731
         kappa2 = 6693.0 # Ha
-else:
+elif option == 5:
         kappa1 = 9576.0 #OIII
         kappa2 = 10010.0 #Hbeta
 
