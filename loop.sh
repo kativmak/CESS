@@ -70,6 +70,6 @@ fi
 #echo 'Tau calculations...'
 python tau.py <<< $ratio_number $ratio_number $range  $rotation_key
 #echo 'RT calculations...'
-python rt.py <<< $rotation_key $rotation_key $bg $range
+python rt.py <<< $rotation_key $rotation_key $ratio_number $bg $range
 
 echo All done

@@ -50,6 +50,9 @@ elif option == 3:
 	hbeta_2 = np.fromfile('./MV_tables/ha_full/hb.dat', dtype=float, count=-1, sep='\n')
 	temp_2 = np.fromfile('./MV_tables/ha_full/temp.dat', dtype=float, count=-1, sep='\n')
 elif option == 4:
+	emis1_2 = np.fromfile('./MV_tables/s2_solar/s6717.dat', dtype=float, count=-1, sep='\n')
+	hbeta1_2 = np.fromfile('./MV_tables/s2_solar/hbeta_6717.dat', dtype=float, count=-1, sep='\n')
+	temp1_2 = np.fromfile('./MV_tables/s2_solar/temp_6717.dat', dtype=float, count=-1, sep='\n')
 	emis_1 = np.fromfile('./MV_tables/s2_solar/s6731.dat', dtype=float, count=-1, sep='\n')
 	hbeta_1 = np.fromfile('./MV_tables/s2_solar/hbeta_6731.dat', dtype=float, count=-1, sep='\n')
 	temp_1 = np.fromfile('./MV_tables/s2_solar/temp_6731.dat', dtype=float, count=-1, sep='\n')
@@ -68,6 +71,12 @@ elif option == 5:
 emis_1 = emis_1*hbeta_1
 #interpolation: x - temp dat, y - emission data
 interp_func_1 = interp1d(temp_1, emis_1)
+
+#for unres SNRs:
+if option == 4:
+	emis1_2 = emis1_2*hbeta1_2
+	interp_func1_2 = interp1d(temp1_2, emis1_2)
+
 
 if option == 5:
 	emis_2 = hbeta_2
@@ -99,6 +108,7 @@ up_lim2 = temp_2[-1]
 #Interpolation itself
 emiss_1 = np.where((low_lim1  < temp_sim) & (temp_sim < up_lim1), np.interp(temp_sim, temp_1, emis_1), 0.0)
 emiss_2 = np.where((low_lim2  < temp_sim) & (temp_sim < up_lim2), np.interp(temp_sim, temp_2, emis_2), 0.0)
+
 print('Min and max for the first emission: ', np.amin(emiss_1), np.amax(emiss_1))
 print('Min and max for the second emission: ', np.amin(emiss_2), np.amax(emiss_2))
 
@@ -109,5 +119,15 @@ if bg == 1:
 elif bg == 0:
 	np.save('emiss_1.npy', emiss_1)
 	np.save('emiss_2.npy', emiss_2)
+
+if option == 4:
+	emiss1_2 = np.where((temp1_2[0]  < temp_sim) & (temp_sim < temp1_2[-1]), np.interp(temp_sim, temp1_2, emis1_2), 0.0)
+	emiss_1 = emiss_1 + emiss1_2
+
+	#Let's save the data
+	if bg == 1:
+		np.save('bg_emiss_1_unres.npy', emiss_1)
+	elif bg == 0:
+		np.save('emiss_1_unres.npy', emiss_1)
 
 print('Emission cubes are ready')
