@@ -21,5 +21,5 @@ As a default, there is only a calculation of line ratios, but you can easily use
 To start CESS you need to have uniform grid data (not an AMR-grid). You can use this tool to reproject your data to the uniform grid: 
 https://bitbucket.org/pierrenbg/flash-amr-tools/src/master/
 
-Other details & results can be found in  [} Makarenko, E.I., Walch, S., Clarke, S.D., et al. 2020, Journal of Physics Conference Series, 1640, 012009. doi:10.1088/1742-6596/1640/1/012009
+Other details & results can be found in  [Makarenko, E.I., Walch, S., Clarke, S.D., et al. 2020, Journal of Physics Conference Series, 1640, 012009. doi:10.1088/1742-6596/1640/1/012009
 ](https://iopscience.iop.org/article/10.1088/1742-6596/1640/1/012009) and Makarenko et al, subm. to MNRAS 2023
