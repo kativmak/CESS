@@ -69,27 +69,21 @@ elif option == 5:
 
 #Note that emission is normalized on hbeta, so we first multiply on hbeta
 emis_1 = emis_1*hbeta_1
-#interpolation: x - temp dat, y - emission data
-interp_func_1 = interp1d(temp_1, emis_1)
 
 #for unres SNRs:
 if option == 4:
 	emis1_2 = emis1_2*hbeta1_2
 	interp_func1_2 = interp1d(temp1_2, emis1_2)
-
-
 if option == 5:
 	emis_2 = hbeta_2
 else:
 	emis_2 = emis_2*hbeta_2
-interp_func_2 = interp1d(temp_2, emis_2)
-print('Interpolate function is ready')
 
 #Load simulation data: TEMP array
 temp_sim = np.load('gas_temp.npy')
 print('TEMP shape:', np.shape(temp_sim))
 
-#Projection: rotate an array (1-3)
+#Choosing the projection view: rotate an array (1-3)
 if key == 0:
 	size = np.shape(temp_sim)
 elif key == 1:
