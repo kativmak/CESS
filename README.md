@@ -2,10 +2,10 @@
 CESS: Cooling Emission in the optical band from Supernovae in (M)HD Simulations
 
 A post-processing module for the FLASH simulations that calculates the cooling radiation from the supernovae in forbidden optical lines.
-Based on collisional data from MAPPINGS V code (cooling tables are included). Note, photoionisation process is not included. The gas is assumed to be in collisional ionisation equilibrium (CIE).
+Based on collisional data from [MAPPINGS V](https://ascl.net/1807.005) code (cooling tables are included). Note, photoionisation process is not included. The gas is assumed to be in collisional ionisation equilibrium (CIE).
 
 You can calculate the following line ratios:
-1. [S II] (&lambda 6717) /[S II] 6731
+1. [S II] (&lambda; 6717) /[S II] 6731
 2. [N II] 6583 / Ha 6365
 3. [O III] 5007 /Ha 6563
 4. [S II] 6731 / Ha 6563
