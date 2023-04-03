@@ -5,7 +5,7 @@ A post-processing module for the FLASH simulations that calculates the cooling r
 Based on collisional data from MAPPINGS V code (cooling tables are included). Note, photoionisation process is not included. The gas is assumed to be in collisional ionisation equilibrium (CIE).
 
 You can calculate the following line ratios:
-1. [S II] ($\lambda$6717) /[S II] 6731
+1. [S II] (\lambda 6717) /[S II] 6731
 2. [N II] 6583 / Ha 6365
 3. [O III] 5007 /Ha 6563
 4. [S II] 6731 / Ha 6563
