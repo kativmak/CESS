@@ -5,11 +5,11 @@ A post-processing module for the FLASH simulations that calculates the cooling r
 Based on collisional data from [MAPPINGS V](https://ascl.net/1807.005) code (cooling tables are included). Note, photoionisation process is not included. The gas is assumed to be in collisional ionisation equilibrium (CIE).
 
 You can calculate the following line ratios:
-1. [S II] (&lambda; 6717) /[S II] 6731
-2. [N II] 6583 / Ha 6365
-3. [O III] 5007 /Ha 6563
-4. [S II] 6731 / Ha 6563
-5. [O III] 6731 / Hb 4861
+1. [S II] (&lambda;6717) /[S II] (&lambda;6731)
+2. [N II] (&lambda;6583) / H&alpha; (&lambda;6365)
+3. [O III] (&lambda;5007) /H&alpha; (&lambda;6563)
+4. [S II] (&lambda;6731) / H&alpha; (&lambda;6563)
+5. [O III] (&lambda;6731) / H&beta; (&lambda;4861)
 
 The structure is following:
 1. emiss_3Dcube.py - calculates the cooling emission cube using the temperature 3D cube from simulations from the MAPPINGS V tables.
