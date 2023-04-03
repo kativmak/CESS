@@ -18,7 +18,6 @@ The structure is following:
 You can see more details on the attached diagram for the step-by-step procedure.
 As a default, there is only a calculation of line ratios, but you can easily use it to get flux maps in isolated optical filters.
 
-To start CESS you need to have uniform grid data (not an AMR-grid). You can use this tool to reproject your data to the uniform grid: 
-https://bitbucket.org/pierrenbg/flash-amr-tools/src/master/
+To start CESS you need to have uniform grid data (not an AMR-grid). You can use [this tool](https://bitbucket.org/pierrenbg/flash-amr-tools/src/master/) to reproject your data to the uniform grid.
 
 Other details & results fro supernovae remnants (simulations from [SILCC-Zoom: simulations of molecular clouds](https://academic.oup.com/mnras/article/472/4/4797/4111168)) can be found in  [Makarenko, E.I., Walch, S., Clarke, S.D., et al. 2020, Journal of Physics Conference Series, 1640, 012009](https://iopscience.iop.org/article/10.1088/1742-6596/1640/1/012009) and Makarenko et al, subm. to MNRAS 2023
