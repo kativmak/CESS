@@ -1,18 +1,20 @@
 import sys
 import numpy as np
 
-#Projection parameter, should ne the same as in main emission calculations!
+#Projection parameter, should be the same as in the main emission calculations!
 key = int(sys.argv[1])
 #int(input("Rotation key (from 0 to 2): "))
 
+#Choose the line raion:
 option = int(sys.argv[2])
 
+#If bg == 0 there is no background subtraction; 
+#if bg == 1, you need to calculate background arrays for each line using emiss_3Dcube.py
 bg = int(sys.argv[3])
 
 n = len(sys.argv[4])
 coord = sys.argv[4][0:n-1]
 coord = coord.split(',')
-#int(input("Resolved (0) or unresolved (1) SNR calculations?: "))
 
 #Optical depth files loading
 tau_1 = np.load('tau_emiss1.npy')
@@ -44,6 +46,7 @@ elif bg == 1:
 	if option == 4:		
 		emiss_1_unr = emiss_1unr - emiss_bg_1unr
 		emiss_1_unr[emiss_1_unr < 0.0] = 0.0
+		
 #Right side of the cube
 emiss1_1 = np.flip(emiss_1, 1)
 emiss2_1 = np.flip(emiss_1, 0)
