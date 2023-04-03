@@ -8,7 +8,7 @@ from scipy.interpolate import interp1d
 #np.save('gas_density.npy', b)
 #-----------------------------------------------------
 
-#Load simulated data: TEMP, DENS, shock_cells
+#Load simulated data: DENS
 dens_sim = np.load('gas_density.npy')
 
 option = sys.argv[1]
@@ -40,8 +40,8 @@ elif key == 2:
 #Size of the cell
 dx = (xmax - xmin)/size[key]
 
-#Absorption cross section is taken from Draine (2003), 
-#Silicate Model for Interstellar Dust with R_v = 4.0
+# The dust absorption cross-section is taken from Weingartner & Draine (2001): 
+# we use the silicate model for Interstellar Dust for Milky Way with R_V = 4.0.
 
 if option == 1:
         kappa1 = 6419.0 #SII 6731
@@ -62,6 +62,7 @@ elif option == 5:
 #Additional one:
 #kappa2 = 12870 #SII 4067
 
+#Constant from the simulations:
 dusttogas = 1e-2
 
 tau1 = dens_sim*kappa1*dx*dusttogas
