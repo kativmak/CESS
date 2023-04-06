@@ -2,19 +2,23 @@ import sys
 import numpy as np
 
 #Projection parameter, should be the same as in the main emission calculations!
-key = int(sys.argv[1])
-#int(input("Rotation key (from 0 to 2): "))
+#key = int(sys.argv[1])
+key = int(input("Rotation key (from 0 to 2): "))
 
 #Choose the line raion:
-option = int(sys.argv[2])
+#option = int(sys.argv[2])
+option = int(input())
 
 #If bg == 0 there is no background subtraction; 
 #if bg == 1, you need to calculate background arrays for each line using emiss_3Dcube.py
-bg = int(sys.argv[3])
+#bg = int(sys.argv[3])
+bg = int(input("BG subtration (from 0 to 1): "))
 
-n = len(sys.argv[4])
-coord = sys.argv[4][0:n-1]
-coord = coord.split(',')
+#n = len(sys.argv[4])
+#coord = sys.argv[4][0:n-1]
+#coord = coord.split(',')
+#Put in your coordinates is cm: [xmin, xmax, ymin, ymax, zmin, zmax]
+coord = [-2.9e+20,-0.9e+20, 2.3e+20, 5e+20, -1.0e+20, 1.1e+20]
 
 #Optical depth files loading
 tau_1 = np.load('tau_emiss1.npy')
