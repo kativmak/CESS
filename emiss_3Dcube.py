@@ -14,16 +14,16 @@ from matplotlib.colors import LogNorm, Normalize
 #np.save('gas_temp.npy', b)
 #-----------------------------------------------------
 
-file_numb = sys.argv[1]
-# int(input("# of the snapshot: "))
+#file_numb = sys.argv[1]
+file_numb = int(input("# of the snapshot: "))
 
-option = int(sys.argv[2])
-#int(input("""Enter the number of the ratio to calculate: \n 1. [S II]/[S II] \n 2. [N II]/Ha \n 3. [O III]/Ha \n 4. [S II]/Ha \n 5. [O III]/Hb \n"""))
+#option = int(sys.argv[2])
+option = int(input("""Enter the number of the ratio to calculate: \n 1. [S II]/[S II] \n 2. [N II]/Ha \n 3. [O III]/Ha \n 4. [S II]/Ha \n 5. [O III]/Hb \n"""))
 
-bg = int(sys.argv[3])
-#int(input("""Is it a background emission calculations? \n 1. Yes \n 2. No \n"""))
-key = int(sys.argv[4])
-#int(input("Rotation key (from 0 to 2): "))
+#bg = int(sys.argv[3])
+bg = int(input("""Is it a background emission calculations? \n 1. Yes \n 2. No \n"""))
+#key = int(sys.argv[4])
+key = int(input("Rotation key (from 0 to 2): "))
 
 h_star = 3.086e18 #pc -> cm
 
