@@ -14,9 +14,11 @@ dens_sim = np.load('gas_density.npy')
 #option = sys.argv[1]
 option = int(input("""Enter the number of the ratio to calculate: \n 1. [S II]/[S II] \n 2. [N II]/Ha \n 3. [O III]/Ha \n 4. [S II]/Ha \n 5. [O III]/Hb \n"""))
 
-n = len(sys.argv[2])
-coord = sys.argv[2][0:n-1]
-coord = coord.split(',')
+#n = len(sys.argv[2])
+#coord = sys.argv[2][0:n-1]
+#coord = coord.split(',')
+#Put in your coordinates is cm: [xmin, xmax, ymin, ymax, zmin, zmax]
+coord = [-2.9e+20,-0.9e+20, 2.3e+20, 5e+20, -1.0e+20, 1.1e+20]
 
 #Projection parameter, should ne the same as in main emission calculations!
 #key = int(sys.argv[3])
