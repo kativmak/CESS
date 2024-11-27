@@ -76,19 +76,19 @@ dx = (xmax - xmin)/size[(key)]
 
 for i in range(size[key]):
 	if i == 0:
-		integ_em_1 = emiss_1[0]* np.exp(-tau_1[0])*1e21*1e22/dx/dx #bottom from the top of the cube
-		integ_em_rev_1 = emiss2_1[0]*np.exp(-tau2_1[0])*1e21*1e22/dx/dx #bottom of the cube
-		integ_em_2 = emiss_2[0]* np.exp(-tau_2[0])*1e21*1e22/dx/dx
-		integ_em_rev_2 = emiss2_2[0]*np.exp(-tau2_2[0])*1e21*1e22/dx/dx
+		integ_em_1 = emiss_1[0]* np.exp(-tau_1[0])*1e21*1e21/dx/dx #bottom from the top of the cube
+		integ_em_rev_1 = emiss2_1[0]*np.exp(-tau2_1[0])*1e21*1e21/dx/dx #bottom of the cube
+		integ_em_2 = emiss_2[0]* np.exp(-tau_2[0])*1e21*1e21/dx/dx
+		integ_em_rev_2 = emiss2_2[0]*np.exp(-tau2_2[0])*1e21*1e21/dx/dx
 	else:
 		tau_1[i] = tau_1[i] + tau_1[i-1]
 		tau2_1[i] = tau2_1[i] + tau2_1[i-1]
-		integ_em_1 += emiss_1[i]  * np.exp(-tau_1[i])*1e21*1e22/dx/dx
-		integ_em_rev_1 += emiss2_1[i]  * np.exp(-tau2_1[i])*1e21*1e22/dx/dx
+		integ_em_1 += emiss_1[i]  * np.exp(-tau_1[i])*1e21*1e21/dx/dx
+		integ_em_rev_1 += emiss2_1[i]  * np.exp(-tau2_1[i])*1e21*1e21/dx/dx
  		tau_2[i] = tau_2[i] + tau_2[i-1]
 		tau2_2[i] = tau2_2[i] + tau2_2[i-1]
-		integ_em_2 += emiss_2[i] * np.exp(-tau_2[i])*1e21*1e22/dx/dx
-		integ_em_rev_2 += emiss2_2[i] * np.exp(-tau2_2[i])*1e21*1e22/dx/dx
+		integ_em_2 += emiss_2[i] * np.exp(-tau_2[i])*1e21*1e21/dx/dx
+		integ_em_rev_2 += emiss2_2[i] * np.exp(-tau2_2[i])*1e21*1e21/dx/dx
 
 if option == 4:
 	for i in range(size[key]):
