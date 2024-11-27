@@ -93,13 +93,13 @@ for i in range(size[key]):
 if option == 4:
 	for i in range(size[key]):
 		if i == 0:
-			integ_em_1unr = emiss_1unr[0]* np.exp(-tau_1[0])*1e21*1e22/dx/dx #bottom from the top of the cube
-			integ_em_rev_1unr = emiss2_1unr[0]*np.exp(-tau2_1[0])*1e21*1e22/dx/dx #bottom of the cube
+			integ_em_1unr = emiss_1unr[0]* np.exp(-tau_1[0])*1e21*1e21/dx/dx #bottom from the top of the cube
+			integ_em_rev_1unr = emiss2_1unr[0]*np.exp(-tau2_1[0])*1e21*1e21/dx/dx #bottom of the cube
 		else:
 			tau_1[i] = tau_1[i] + tau_1[i-1]
 			tau2_1[i] = tau2_1[i] + tau2_1[i-1]
-			integ_em_1unr += emiss_1unr[i]  * np.exp(-tau_1[i])*1e21*1e22/dx/dx
-			integ_em_rev_1unr += emiss2_1unr[i]  * np.exp(-tau2_1[i])*1e21*1e22/dx/dx
+			integ_em_1unr += emiss_1unr[i]  * np.exp(-tau_1[i])*1e21*1e21/dx/dx
+			integ_em_rev_1unr += emiss2_1unr[i]  * np.exp(-tau2_1[i])*1e21*1e21/dx/dx
 
 
 #Fixing the 'resolution'(/arcsec^2 )
